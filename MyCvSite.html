@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artem's CV</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/2890/2890784.png">
+    <title>Artem Haliv - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 30px;
+            background: rgb(0, 51, 102);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 20px 20px;
+            animation: gradientHeader 10s infinite alternate ease-in-out;
+            transition: background 1s ease;
+            height: 50px;
+            width: 100%;
+        }
+
+        @keyframes gradientHeader {
+            0% {
+                background: rgb(0, 51, 102);
+            }
+            25% {
+                background: rgb(0, 170, 255);
+            }
+            50% {
+                background: rgb(255, 255, 0);
+            }
+            75% {
+                background: rgb(255, 102, 0);
+            }
+            100% {
+                background: rgb(255, 0, 0);
+            }
+        }
+
+        header .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        header .links {
+            display: flex;
+            gap: 20px;
+            margin-left: 40px;
+        }
+
+        header .links button {
+            padding: 10px 20px;
+            background-color: white;
+            color: rgb(0, 51, 102);
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        header .links button:hover {
+            background-color: #ff6347;
+            transform: scale(1.1);
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .about-me,
+        .education,
+        .skills,
+        .projects,
+        .contact {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .skills h2, .projects h2 {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .skills ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills li {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 25px;
+            height: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #6c63ff, #3586ff);
+            width: 0;
+            animation: fillBar 1.5s forwards;
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--percent);
+            }
+        }
+
+        footer {
+            background: rgb(0, 51, 102);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            animation: gradientFooter 10s infinite alternate ease-in-out;
+            border-radius: 20px 20px 0 0;
+            transition: background 1s ease;
+            height: 80px;
+            position: relative;
+        }
+
+        @keyframes gradientFooter {
+            0% {
+                background: rgb(0, 51, 102);
+            }
+            25% {
+                background: rgb(0, 170, 255);
+            }
+            50% {
+                background: rgb(255, 255, 0);
+            }
+            75% {
+                background: rgb(255, 102, 0);
+            }
+            100% {
+                background: rgb(255, 0, 0);
+            }
+        }
+
+        .social-icons {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .contact textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none; /* Забороняє змінювати розмір поля */
+    height: 120px; /* Можна задати конкретну висоту */
+}
+
+        .social-icons a {
+            font-size: 24px;
+            color: white;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #ffcc00;
+        }
+
+        /* Contact Form */
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: left;
+        }
+
+        .contact label {
+            font-size: 18px;
+        }
+
+        .contact input, .contact textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        header .links button a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: inherit; /* Для правильного кольору тексту */
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none; /* Важливо для запобігання підкреслення */
+        }
+        #education {
+    display: block;  /* Переконатися, що елемент займає всю ширину */
+    margin-top: -50px;  /* Підняти розділ вверх */
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+    left: 0;  /* Скидаємо зміщення вліво */
+}
+
+        .contact button {
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .contact button:hover {
+            background-color: #ff6347;
+        }
+
+        /* New Projects Section */
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .project-card {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .project-card h3 {
+            font-size: 24px;
+            margin-top: 15px;
+        }
+
+        .project-card p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .project-card button {
+            margin-top: 15px;
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .project-card button:hover {
+            background-color: #ff6347;
+        }
+
+
+        header .links button {
+    padding: 8px 18px; /* Збільшені відступи */
+    font-size: 14px; /* Трохи більший шрифт */
+    display: flex; /* Використовуємо flex для центрування */
+    justify-content: center; /* Центруємо текст по горизонталі */
+    align-items: center; /* Центруємо текст по вертикалі */
+    width: auto; /* Ширина адаптивна */
+    height: 35px; /* Встановлюємо фіксовану висоту кнопки */
+    border: none; /* Знімаємо обведення з кнопки */
+    background: transparent; /* Видаляємо фон кнопки */
+    cursor: pointer; /* Додаємо курсор у вигляді руки */
+}
+
+header .links button a {
+    display: block; /* Робимо посилання блоковим елементом */
+    width: 100%; /* Ширина на 100% */
+    height: 100%; /* Висота на 100% */
+    color: inherit; /* Спадкуємо колір тексту */
+    text-align: center; /* Центруємо текст по горизонталі */
+    padding: 0; /* Видаляємо зайві внутрішні відступи */
+    text-decoration: none; /* Видаляємо підкреслення */
+}
+
+
+
+
+
+/* Фоновий ефект для хедера */
+header {
+    background: linear-gradient(45deg, red, yellow, green, blue, purple, cyan, orange);
+    background-size: 400% 400%;
+    animation: gradientAnimation 5s ease infinite;
+    padding: 20px;
+    color: white;
+}
+
+/* Фоновий ефект для футера */
+footer {
+    background: linear-gradient(45deg, cyan, magenta, yellow, lime, indigo, violet, orange);
+    background-size: 400% 400%;
+    animation: gradientAnimation 5s ease infinite;
+    padding: 20px;
+    color: white;
+}
+
+/* Анімація для плавної зміни кольорів */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Стили для заголовку в хедері */
+header h1 {
+    text-align: center;
+    font-size: 3em;
+}
+
+/* Стили для тексту в футері */
+footer p {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+
+
+
+body {
+    background-color: #e0f7fa; /* Світло-блакитний фон */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Загальні стилі */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Хедер */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    z-index: 1000; /* Для того, щоб хедер був поверх іншого контенту */
+}
+
+/* Основний контент */
+main {
+    margin-top: 60px; /* Відступ для основного контенту, щоб хедер не перекривав його */
+    padding: 20px;
+    min-height: 100vh; /* Мінімальна висота основного контенту */
+    box-sizing: border-box;
+}
+
+
+
+/* Футер */
+#footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 8px; /* Зменшуємо розмір тексту в футері */
+}
+
+#footer {
+    font-size: 12px !important; /* Зменшуємо розмір тексту */
+}
+
+/* Забезпечує, що футер не перекриває основний контент */
+main::after {
+    content: '';
+    display: block;
+    height: 100px; /* Висота футера */
+}
+
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">Artem Haliv</div>
+    <div class="links">
+        <button><a href="#about">About Me</a></button>
+        <button><a href="#education">Education</a></button>
+        <button><a href="#skills">Skills</a></button>
+        <button><a href="#projects">Projects</a></button>
+        <button><a href="#contact">Contact</a></button>
+    </div>
+</header>
+
+<main>
+    <section id="about">
+        <div class="about-me">
+            <h2>About Me</h2>
+            <p>My name is Artem Haliv, and I'm 17 years old. I'm from Ukraine, currently live and study in Warsaw,Poland.</p>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <h2>Education</h2>
+        <p>I am currently studying at Vistula University in Warsaw, pursuing a Bachelor’s degree in Computer Science, expected to graduate in 2027.</p>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <ul>
+                <li>C#: <div class="progress-bar" style="--percent: 90%;"><span></span></div></li>
+                <li>Java: <div class="progress-bar" style="--percent: 75%;"><span></span></div></li>
+                <li>OOP: <div class="progress-bar" style="--percent: 75%;"><span></span></div></li>
+                <li>WinForm <div class="progress-bar" style="--percent: 75%;"><span></span></div></li>
+                <li>SQL <div class="progress-bar" style="--percent: 60%;"><span></span></div></li>
+                <li>HTML<div class="progress-bar" style="--percent: 50%;"><span></span></div></li>
+                <li>CSS<div class="progress-bar" style="--percent: 50%;"><span></span></div></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <img src="https://cdn.jim-nielsen.com/ios/512/weather-2021-12-07.png?rf=1024" alt="Project 1">
+                <h3>Weather App</h3>
+                <p>Choose your city or write it by yourself, click the button and get the info about weather in this city.</p>
+                <button id="project1-button">View Project</button>
+            </div>
+            <div class="project-card">
+                <img src="https://static-00.iconduck.com/assets.00/tic-tac-toe-icon-2048x2048-g58f0u84.png" alt="Project 2">
+                <h3>Tic-Tac-Toe</h3>
+                <p>Classic Tic-Tac-Toe game, you can play with another player or with bot.</p>
+                <button id="project2-button">View Project</button>
+            </div>
+            <div class="project-card">
+                <img src="https://icon-library.com/images/book-app-icon/book-app-icon-8.jpg" alt="Project 3">
+                <h3>E-Library</h3>
+                <p>E-Library where you can add,delete and update books of different formats.</p>
+                <p></p>
+                <button id="project3-button">View Project</button>
+            </div>
+            <div class="project-card">
+                <img src="https://i.namu.wiki/i/sTjKbhx7i1DHNvWdDg12Z_LN1y9TTUX5BhLK4pz1KHORfiLoiwGaa89XMxMR4RGmpvBqMrUruicTxqy_0Qa-Uw.webp" alt="Project 4">
+                <h3>BlackJack</h3>
+                <p>Game where you need to score more points than your opponent but not more than 21.</p>
+                <button id="project4-button">View Project</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <form id = "contact-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <div class="social-icons">
+        <a href="https://github.com/Niveron228"><ion-icon name="logo-github"></ion-icon></a>
+        <a href="https://www.linkedin.com/in/artem-haliv-4a763729b/"><ion-icon name="logo-linkedin"></ion-icon></a>
+        <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqWgPXRfGVZhMSQZxDJtVdnXlQcwhckTnBDHPckFzjCFrZSzBtLRJpZvCQCCMzfGLLfGhg"><ion-icon name="logo-google"></ion-icon></a>
+        <a href="https://www.instagram.com/galivartem/"><ion-icon name="logo-instagram"></ion-icon></a>
+    </div>
+    <p>&copy; 2024 Artem Haliv | All Rights Reserved</p>
+</footer>
+
+<script>
+    const sections = document.querySelectorAll('section');
+    const options = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, options);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+    
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        const gmailLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=artemiko.galiv@gmail.com&su=Message from ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+        window.location.href = gmailLink;
+    });
+    </script>
+
+<script>
+    document.getElementById('project1-button').addEventListener('click', function() {
+    
+        const projectUrl = 'https://github.com/Niveron228/Weather-App'; 
+    
+        window.location.href = projectUrl;
+    });
+    </script>
+
+<script>
+    document.getElementById('project2-button').addEventListener('click', function() {
+
+        const projectUrl = 'https://github.com/Niveron228/Tic-Tac-Toe';
+    
+ 
+        window.location.href = projectUrl;
+    });
+    </script>
+
+<script>
+    document.getElementById('project3-button').addEventListener('click', function() {
+
+        const projectUrl = 'https://github.com/Niveron228/Library'; 
+    
+
+        window.location.href = projectUrl;
+    });
+    </script>
+
+<script>
+    document.getElementById('project4-button').addEventListener('click', function() {
+
+        const projectUrl = 'https://github.com/Niveron228/BlackJackGame'; 
+    
+        window.location.href = projectUrl;
+    });
+    </script>
+</body>
+</html> 
